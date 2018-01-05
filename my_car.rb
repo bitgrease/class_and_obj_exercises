@@ -6,23 +6,14 @@
 
 class MyCar
 
-  attr_accessor :year, :color, :model, :speed, :engine_running
-  
-
+  attr_accessor :color
+  attr_reader :year
   def initialize(year, color, model)
-    self.year = year
-    self.color = color
-    self.model = model
-    self.speed = 0
-    self.engine_running = false
-  end
-
-  def info
-    if engine_running
-      "Your #{year} #{color} #{model} is going #{speed} mph."
-    else
-      "Your #{year} #{color} #{model} is not running."
-    end
+    @year = year
+    @color = color
+    @model = model
+    @current_speed = 0
+    @engine_running = false
   end
 
   def start
@@ -33,38 +24,28 @@ class MyCar
     end
   end
 
-  def turn_off
-    if speed != 0
-      puts "Stop before turning off the #{name}."
-    elsif !engine_running
-      puts "The #{name} is already off."
-    else
-      engine_running = true
-    end
+  def shutdown
+    current_speed = 0
+    puts "You have shut down the #{name}."
   end
 
-  def accelerate(mph)
-    case speed
-    when (0..100) then self.speed += mph
-    else puts "You're already going #{speed}. Can't go any faster."
-    end
+  def speed_up(mph)
+    @current_speed += mph
+    puts "You accelerate by #{mph} mph."
   end
 
-  def brake
-    if speed < 10
-      self.speed = 0
-    else
-      self.speed -= 10
-    end
+  def current_speed
+    puts "You are going #{@current_speed} mph."
+  end
+
+  def brake(mph)
+    @current_speed -= mph
+    puts "You push the brake and declerate by #{mph}. You are now going #{@current_speed} mph."
   end
 end
 
 
 chevy = MyCar.new('1968', 'black', 'chevelle')
-puts chevy.info
-chevy.engine_running = true
-puts chevy.info
-chevy.accelerate(10)
-puts chevy.info
-chevy.brake
-puts chevy.info
+chevy.color = 'red'
+puts chevy.color
+puts chevy.year
