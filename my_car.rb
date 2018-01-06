@@ -42,6 +42,11 @@ class MyCar
     @current_speed -= mph
     puts "You push the brake and declerate by #{mph}. You are now going #{@current_speed} mph."
   end
+
+  def spraypaint(color)
+    self.color = color
+    puts "You've painted your car #{self.color}."
+  end
 end
 
 
